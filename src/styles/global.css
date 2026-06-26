@@ -1,2 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 @import "tailwindcss";
 
+
+:root {
+    --background: #0B0F14;
+    --surface: #151B23;
+    --primary: #E50914;
+    --rating: #F5C518;
+
+    --main-text: #FFFFFF;
+    --secondary-text: #B8C0CC;
+
+    --border: #232A35;
+}
+
+body {
+    background-color: var(--background);
+    font-family: Inter, sans-serif;
+    color: var(--main-text);
+}
+
+.swiper {
+  overflow: hidden;
+}
+
+.swiper-wrapper,
+.swiper-slide {
+  overflow: visible;
+}

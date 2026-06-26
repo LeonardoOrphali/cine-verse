@@ -1,23 +1,57 @@
-import { getPopularMovies, getTrendingMovies, searchMovies, getMovieDetails } from "../services/movieService"
+import { getPopularMovies, getTrendingMovies } from "../services/movieService"
+import { useEffect, useState } from "react"
+import Header from "../components/Header"
+import Hero from "../components/Hero"
+import MovieGrid from "../components/MovieGrid"
 
 function Home() {
+    const [popularMovies, setPopularMovies] = useState([])
+    const [trendingMovies, setTrendingMovies] = useState([])
 
-    // TESTES
-    async function getTests  () {
-        console.log( 
-            await getPopularMovies(),
-            await getTrendingMovies(),
-            await searchMovies('batman'),
-            await getMovieDetails(),
-        )
+    useEffect(() => {
+        async function trendingTransfer() {
+            const allTrendingMovies = await getTrendingMovies()
+            setTrendingMovies(allTrendingMovies)
+        }
+        async function popularTransfer() {
+            const allPopularMovies = await getPopularMovies()
+            setPopularMovies(allPopularMovies)
+        }
 
-    }
-    getTests()
+        trendingTransfer()
+        popularTransfer()
+    },[])
 
     return (
-        <>
-            <h1>Hello, World!</h1>
-        </>
+        <div className="
+            w-full
+            h-full
+            flex
+            flex-col
+            items-center
+            justify-start
+        ">
+            <Header />
+
+            <main className="
+                container
+                pb-80
+                h-auto
+                flex
+                flex-col
+                items-center
+                justify-start
+            ">
+                <Hero movies={popularMovies}/>
+                <div className="
+                    w-420
+                    mt-180
+                ">
+                    <MovieGrid movies={popularMovies} title={"Popular"} />
+                    <MovieGrid movies={trendingMovies} title={"Do momento"}/>
+                </div>
+            </main>
+        </div>
     )
 }
 

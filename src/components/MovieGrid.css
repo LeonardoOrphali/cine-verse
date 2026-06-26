@@ -1,0 +1,11 @@
+.swiper-button-prev,
+.swiper-button-next{
+    transition:.25s;
+    opacity:0;
+    color: white;
+}
+
+.carousel:hover .swiper-button-prev,
+.carousel:hover .swiper-button-next{
+    opacity:1;
+}
