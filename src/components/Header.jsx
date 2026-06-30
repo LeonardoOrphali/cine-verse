@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 
 function Header() {
     return(
@@ -34,13 +35,15 @@ function Header() {
                         alt="logo" 
                         className="
                             h-10 w-10
-                        " 
-                    />
+                        "/>
                     <nav>
                         <ul className="
                             flex 
                             gap-2
                         ">
+                            <Link ro="/">
+                                <li>Home</li>
+                            </Link>
                             <li>Populares</li>
                             <li>Em alta</li>
                         </ul>
@@ -66,7 +69,7 @@ function Header() {
                                     rounded-md
                                     border-[#232A35]
                                   text-black 
-                                 " />
+                                 "/>
                         </form>
                         <button>Login</button>
                         <button>DarkMode</button>

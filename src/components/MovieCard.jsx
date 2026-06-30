@@ -1,7 +1,11 @@
-import fallbackImg from "../assets/fallbackImg.png";
+import { Link } from "react-router-dom"
+
+import fallbackImg from "../assets/fallbackImg.png"
 
 function MovieCard({ movie }) {
     return (
+        <Link to={`/movie/${movie.id}`}>
+
         <div className="
                 relative
                 w-56
@@ -73,7 +77,8 @@ function MovieCard({ movie }) {
                 </div>
             </div>
         </div>
-    );
+                </Link>
+    )
 }
 
-export default MovieCard;
+export default MovieCard

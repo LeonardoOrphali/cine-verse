@@ -1,26 +1,36 @@
 import { getPopularMovies, getTrendingMovies } from "../services/movieService"
 import { useEffect, useState } from "react"
+
 import Header from "../components/Header"
 import Hero from "../components/Hero"
 import MovieGrid from "../components/MovieGrid"
+import Loading from "../components/Loading"
 
 function Home() {
     const [popularMovies, setPopularMovies] = useState([])
     const [trendingMovies, setTrendingMovies] = useState([])
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        async function trendingTransfer() {
-            const allTrendingMovies = await getTrendingMovies()
-            setTrendingMovies(allTrendingMovies)
-        }
-        async function popularTransfer() {
-            const allPopularMovies = await getPopularMovies()
-            setPopularMovies(allPopularMovies)
-        }
+        async function loadHomeData() {
+            try {
+                const [popular, trending] = await Promise.all([
+                    getPopularMovies(),
+                    getTrendingMovies()
+                ])
 
-        trendingTransfer()
-        popularTransfer()
+                setPopularMovies(popular)
+                setTrendingMovies(trending)
+            } finally {
+                setLoading(false)
+            }
+        }
+        loadHomeData()
     },[])
+
+    if (loading) {
+        return <Loading />
+    }
 
     return (
         <div className="
@@ -42,13 +52,13 @@ function Home() {
                 items-center
                 justify-start
             ">
-                <Hero movies={popularMovies}/>
+                <Hero movies={popularMovies} />
                 <div className="
-                    w-420
-                    mt-180
+                    w-[110%]
+                    mt-225
                 ">
                     <MovieGrid movies={popularMovies} title={"Popular"} />
-                    <MovieGrid movies={trendingMovies} title={"Do momento"}/>
+                    <MovieGrid movies={trendingMovies} title={"Do momento"} />
                 </div>
             </main>
         </div>

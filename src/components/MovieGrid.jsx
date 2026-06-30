@@ -8,7 +8,7 @@ import './MovieGrid.css'
 function MovieGrid({ movies, title }) {
     return (
         <div className="
-            w-full              
+            w-full             
             carousel
             overflow-x-hidden
         ">
@@ -16,7 +16,9 @@ function MovieGrid({ movies, title }) {
                 flex 
                 items-start 
                 w-full
-            ">{title}</h1>
+            ">
+                {title}
+            </h1>
             <Swiper
                 modules={[Navigation]}
                 slidesPerView={"auto"}

@@ -1,54 +1,40 @@
-import { api } from './movieDbAPI'
+import { api } from "./movieDbAPI"
+import { mapMovieDetails } from "../mappers/movie.mapper"
 
 const defaultParams = {
     language: 'pt-BR',
+    include_adult: false,
 }
 
+const fetchData = async (url, params = {}) => {
+    const response = await api.get(url, {
+        params: {
+            ...defaultParams,
+            ...params,
+        }
+    })
+
+    return response.data
+}
 
 export const getPopularMovies = async () => {
-    const response = await api.get('/movie/popular', {
-        params: defaultParams,
-    })
-    return response.data.results
+    const data = await fetchData("/movie/popular")
+    return data.results
 }
-
 
 export const getTrendingMovies = async () => {
-    const response = await api.get('/trending/movie/day', {
-        params: defaultParams,
-    })
-    return response.data.results
+    const data = await fetchData("/trending/movie/day")
+    return data.results
 }
-
 
 export const searchMovies = async (query) => {
-    if(!query.trim()) return
-    
-    const response = await api.get('/search/movie', {
-        params: {
-            query,
-            defaultParams,
-        },
-    })
-    return response.data.results
+    if (!query.trim()) return
+
+    const data = await fetchData("/search/movie", { query })
+    return data.results
 }
 
-
-export const getMovieDetails = async () => {
-    const response = await api.get('/movie/2', {
-        params: defaultParams,
-    })
-    
-    const data = response.data
-    const details = {
-        title: data.title,
-        overview: data.overview,
-        poster: "https://image.tmdb.org/t/p/w500" + data.poster_path,
-        backdrop: "https://image.tmdb.org/t/p/w500" + data.backdrop_path,
-        average: data.vote_average,
-        release: data.release_date,
-        budget: data.budget,
-        genres: data.genres,
-    }
-    return details
+export const getMovieDetails = async (id) => {
+    const data = await fetchData(`/movie/${id}`)
+    return mapMovieDetails(data)
 }
