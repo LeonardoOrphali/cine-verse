@@ -3,25 +3,32 @@ import { useEffect, useState } from "react"
 
 import { getMovieDetails } from "../services/movieService"
 
+import Loading from "../components/layout/Loading"
+
 function MovieDetails() {
     const { id } = useParams()
+
     const [movie, setMovie] = useState(null)
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
 
         async function loadMovie() {
-            const movie = await getMovieDetails(id)
+            try {
+                const movie = await getMovieDetails(id)
 
-            setMovie(movie)
+                setMovie(movie)
+            } finally {
+                setLoading(false)
+            }
+
         }
 
         loadMovie()
-    },[id])
+    }, [id])
 
-    if (!movie) {
-        return <p>Carregando...</p>
-    }
-    
+    if (loading) return <Loading />
+
     return (
         
         <>

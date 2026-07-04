@@ -2,10 +2,11 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
+
 import MovieCard from "./MovieCard"
 import './MovieGrid.css'
 
-function MovieGrid({ movies, title }) {
+function MovieGridView({ movies, title }) {
     return (
         <div className="
             w-full             
@@ -23,7 +24,7 @@ function MovieGrid({ movies, title }) {
                 modules={[Navigation]}
                 slidesPerView={"auto"}
                 allowTouchMove={false}
-                spaceBetween={15}
+                spaceBetween={5}
                 speed={400}
                 navigation
                 loop
@@ -31,22 +32,22 @@ function MovieGrid({ movies, title }) {
                     h-100
                     w-full
                     overflow-visible
-                ">
-                {movies.map((movie) => (
-                    <SwiperSlide 
-                    key={movie.id} 
-                    className="
-                        w-60!
-                        flex
-                        justify-center
-                        items-start          
-                    ">
-                        <MovieCard movie={movie} />
-                    </SwiperSlide>
-                ))}
+            ">
+                    {movies.map((movie) => (
+                        <SwiperSlide 
+                            key={movie.id} 
+                            className="
+                                w-60!
+                                flex
+                                justify-center
+                                items-start          
+                        ">
+                            <MovieCard movie={movie} />
+                        </SwiperSlide>
+                    ))}
             </Swiper>                
         </div>
     )
 }
 
-export default MovieGrid
+export default MovieGridView

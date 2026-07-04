@@ -1,10 +1,10 @@
 import { getPopularMovies, getTrendingMovies } from "../services/movieService"
 import { useEffect, useState } from "react"
 
-import Header from "../components/Header"
-import Hero from "../components/Hero"
-import MovieGrid from "../components/MovieGrid"
-import Loading from "../components/Loading"
+import Header from "../components/layout/Header"
+import Hero from "../components/layout/Hero"
+import MovieGrid from "../components/movie/MovieGrid"
+import Loading from "../components/layout/Loading"
 
 function Home() {
     const [popularMovies, setPopularMovies] = useState([])
@@ -25,40 +25,53 @@ function Home() {
                 setLoading(false)
             }
         }
-        loadHomeData()
-    },[])
 
-    if (loading) {
-        return <Loading />
-    }
+        loadHomeData()
+    }, [])
+
+    if (loading) return <Loading />
 
     return (
-        <div className="
-            w-full
-            h-full
-            flex
-            flex-col
-            items-center
-            justify-start
-        ">
-            <Header />
-
-            <main className="
-                container
-                pb-80
-                h-auto
+        <div 
+            className="
+                w-full
+                h-full
                 flex
                 flex-col
                 items-center
                 justify-start
-            ">
+            "
+        >
+            <Header />
+
+            <main 
+                className="
+                    container
+                    pb-80
+                    h-auto
+                    flex
+                    flex-col
+                    items-center
+                    justify-start
+                "
+            >
                 <Hero movies={popularMovies} />
-                <div className="
-                    w-[110%]
-                    mt-225
-                ">
-                    <MovieGrid movies={popularMovies} title={"Popular"} />
-                    <MovieGrid movies={trendingMovies} title={"Do momento"} />
+                <div 
+                    className="
+                        w-[110%]
+                        mt-225
+                    "
+                >
+                    <MovieGrid 
+                        movies={popularMovies} 
+                        title={"Popular"} 
+                        variant={"carousel"}
+                    />
+                    <MovieGrid 
+                        movies={trendingMovies} 
+                        title={"Do momento"}
+                        variant={"carousel"} 
+                    />
                 </div>
             </main>
         </div>

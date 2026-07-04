@@ -1,7 +1,8 @@
-import fallbackImg from '../assets/fallbackImg.png'
+import fallbackImg from '../../assets/fallbackImg.png'
 
-function Hero({movies}) {
-    const movie = movies?.[5]
+function Hero({ movies }) {
+    const movie = movies?.[2]
+
     if (!movie) return null
 
     return (
@@ -19,8 +20,7 @@ function Hero({movies}) {
                     h-full
                     w-full
                     object-cover
-                "
-            />
+                " />
             <div className="
                 absolute 
                 inset-0 
@@ -36,13 +36,17 @@ function Hero({movies}) {
                         text-white 
                         text-4xl 
                         font-bold
-                    ">{movie.title}</h1>
+                    ">
+                        {movie.title}
+                    </h1>
                     <p className="
                         w-[80%]
                         text-white/70 
                         mt-2 
                         max-w-xl
-                    ">{movie.overview}</p>
+                    ">
+                        {movie.overview}
+                    </p>
                     <button>Ver mais</button>
                 </div>
             </div>
@@ -54,7 +58,8 @@ function Hero({movies}) {
                 h-32 
                 bg-linear-to-b 
                 from-transparent 
-                to-[#0B0F14]" />
+                to-(--background)
+            " />
         </div>
     )
 }
