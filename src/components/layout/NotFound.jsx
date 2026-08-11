@@ -7,7 +7,9 @@ function NotFound() {
             justify-center
             h-screen
         ">
-            <h1 className="text-(--main-text)">Filme não encontrado</h1>
+            <h1 className="text-(--main-text)">
+                Filme não encontrado
+            </h1>
         </div>
     )
 }

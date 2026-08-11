@@ -1,66 +1,53 @@
 import fallbackImg from '../../assets/fallbackImg.png'
 
-function Hero({ movies }) {
-    const movie = movies?.[2]
-
-    if (!movie) return null
+function Hero({ movie, children }) {
 
     return (
-        <div className="
-            h-full
-            w-full
-            absolute
-            -z-10
-        ">
-            <img
-                src={"https://image.tmdb.org/t/p/original" + movie.backdrop_path}
-                alt={movie.title + " poster"}
-                onError={(e) => (e.currentTarget.src = fallbackImg)}
+        <section 
+            className="
+                h-[95vh]
+                w-full
+                relative
+                overflow-hidden
+            "
+        >
+            <div
                 className="
-                    h-full
-                    w-full
-                    object-cover
-                " />
-            <div className="
-                absolute 
-                inset-0 
-                bg-linear-to-t 
-                from-black/80 
-                to-transparent 
-                flex 
-                items-center
-                pl-30
-            ">
-                <div>
-                    <h1 className="
-                        text-white 
-                        text-4xl 
-                        font-bold
-                    ">
-                        {movie.title}
-                    </h1>
-                    <p className="
-                        w-[80%]
-                        text-white/70 
-                        mt-2 
-                        max-w-xl
-                    ">
-                        {movie.overview}
-                    </p>
-                    <button>Ver mais</button>
-                </div>
+                    inset-0 
+                    bg-linear-to-t 
+                    from-black/80 
+                    to-transparent 
+                    flex 
+                    items-center
+                "
+            >
+                <img
+                    src={"https://image.tmdb.org/t/p/original" + movie.backdrop_path}
+                    alt={movie.title + " poster"}
+                    onError={(e) => (e.currentTarget.src = fallbackImg)}
+                    className="
+                        inset-0
+                        h-full
+                        w-full
+                        object-cover
+                        -z-10
+                    " 
+                />
+                {children}
+                <div 
+                    className="
+                        absolute 
+                        bottom-0 
+                        left-0 
+                        h-32 
+                        w-full
+                        bg-linear-to-b 
+                        from-transparent 
+                        to-(--background)
+                    " 
+                />
             </div>
-            <div className="
-                absolute 
-                bottom-0 
-                left-0 
-                w-full 
-                h-32 
-                bg-linear-to-b 
-                from-transparent 
-                to-(--background)
-            " />
-        </div>
+        </section>
     )
 }
 

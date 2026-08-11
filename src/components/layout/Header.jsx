@@ -8,7 +8,7 @@ function Header() {
             className="
                 top-0
                 left-0
-                z-50
+                z-5
                 fixed
                 w-full
                 flex
@@ -26,8 +26,10 @@ function Header() {
                     flex
                     items-center
                     justify-between
-                    rounded-full
-                    bg-(--background)/30
+                    rounded-2xl
+                    border-2
+                    border-(--background)/10
+                    bg-(--background)/20
                     backdrop-blur-sm
                 "
             >

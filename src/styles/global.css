@@ -19,12 +19,3 @@ body {
     font-family: Inter, sans-serif;
     color: var(--main-text);
 }
-
-.swiper {
-  overflow: hidden;
-}
-
-.swiper-wrapper,
-.swiper-slide {
-  overflow: visible;
-}

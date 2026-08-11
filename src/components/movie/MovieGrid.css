@@ -1,3 +1,11 @@
+.swiper {
+  overflow: hidden;
+}
+
+.swiper-wrapper,
+.swiper-slide {
+  overflow: visible;
+}
 
 .swiper-button-prev,
 .swiper-button-next{

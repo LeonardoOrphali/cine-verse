@@ -35,6 +35,6 @@ export const searchMovies = async (query) => {
 }
 
 export const getMovieDetails = async (id) => {
-    const data = await fetchData(`/movie/${id}`)
+    const data = await fetchData(`/movie/${id}?append_to_response=credits`)
     return mapMovieDetails(data)
 }

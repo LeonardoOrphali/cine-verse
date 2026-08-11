@@ -12,26 +12,44 @@ function Search () {
     const query = searchParams.get("q")
 
     const [movies, setMovies] = useState([])
-    const [loading, setLoading] = useState(true)
+    const [status, setStatus] = useState("loading")
 
     useEffect(() => {
         if (!query) return
-  
+
         async function loadMovies() {
-            try{
+            setStatus("loading")
+
+            try {
                 const result = await searchMovies(query)
+
                 setMovies(result)
-            } finally {
-                setLoading(false)
+
+                if (result.length === 0) {
+                    setStatus("empty")
+                } else {
+                    setStatus("success")
+                }
+
+            } catch {
+                setStatus("error")
             }
         }
 
         loadMovies()
     }, [query])
 
-    if (movies.length < 1) return <NotFound />
+    if (status === "loading") {
+        return <Loading />
+    }
 
-    if (loading) return <Loading />
+    if (status === "empty") {
+        return <NotFound />
+    }
+
+    if (status === "error") {
+        return <Error />
+    }
 
     return (
         <>
@@ -40,8 +58,12 @@ function Search () {
                 variant={"grid"}
                 title={
                     <>
-                        <span className="text-(--secondary-text)">Resultados para &nbsp;</span>
-                        <span className="text-(--main-text)">{query}</span>
+                        <span className="text-(--secondary-text)">
+                            Resultados para &nbsp;
+                        </span>
+                        <span className="text-(--main-text)">
+                            {query}
+                        </span>
                     </>
                 }
             />

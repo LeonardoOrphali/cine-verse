@@ -1,7 +1,6 @@
 import { getPopularMovies, getTrendingMovies } from "../services/movieService"
 import { useEffect, useState } from "react"
 
-import Header from "../components/layout/Header"
 import Hero from "../components/layout/Hero"
 import MovieGrid from "../components/movie/MovieGrid"
 import Loading from "../components/layout/Loading"
@@ -29,37 +28,67 @@ function Home() {
         loadHomeData()
     }, [])
 
+    const heroMovie = popularMovies?.[0]
+    if (!heroMovie) return null
+
     if (loading) return <Loading />
 
     return (
-        <div 
+        <main
             className="
                 w-full
                 h-full
                 flex
                 flex-col
                 items-center
-                justify-start
+                justify-start 
             "
         >
-            <Header />
-
-            <main 
+            <Hero movie={heroMovie}>
+                <div 
+                    className="
+                        left-40
+                        top-70
+                        absolute
+                        flex
+                        flex-col
+                    "
+                >
+                    <h1
+                        className="
+                            text-white 
+                            text-4xl 
+                            font-bold
+                        "
+                    >
+                        {heroMovie.title}
+                    </h1>
+                    <p
+                        className="
+                            w-[80%]
+                            text-white/70 
+                            mt-2 
+                            max-w-xl
+                        "
+                    >
+                        {heroMovie.overview}
+                    </p>
+                </div>
+            </Hero>
+            <section
                 className="
                     container
                     pb-80
                     h-auto
                     flex
                     flex-col
-                    items-center
+                    items-start
                     justify-start
                 "
-            >
-                <Hero movies={popularMovies} />
-                <div 
+            >         
+                <div
                     className="
-                        w-[110%]
-                        mt-225
+                        w-full
                     "
                 >
                     <MovieGrid 
@@ -73,8 +102,8 @@ function Home() {
                         variant={"carousel"} 
                     />
                 </div>
-            </main>
-        </div>
+            </section>
+        </main>
     )
 }
 

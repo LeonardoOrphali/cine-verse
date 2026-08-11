@@ -30,7 +30,7 @@ function SearchBar() {
                 "
             />
             <button type="submit">
-                    Buscar
+                Buscar
             </button>
         </form>
     )

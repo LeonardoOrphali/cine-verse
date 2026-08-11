@@ -8,16 +8,20 @@ import './MovieGrid.css'
 
 function MovieGridView({ movies, title }) {
     return (
-        <div className="
-            w-full             
-            carousel
-            overflow-x-hidden
-        ">
-            <h1 className="
-                flex 
-                items-start 
-                w-full
-            ">
+        <div 
+            lassName="
+                w-full             
+                carousel
+                overflow-x-hidden
+            "
+        >
+            <h1 
+                className="
+                    flex 
+                    items-start 
+                    w-full
+                "
+            >
                 {title}
             </h1>
             <Swiper
@@ -32,7 +36,8 @@ function MovieGridView({ movies, title }) {
                     h-100
                     w-full
                     overflow-visible
-            ">
+                "
+            >
                     {movies.map((movie) => (
                         <SwiperSlide 
                             key={movie.id} 
@@ -41,7 +46,8 @@ function MovieGridView({ movies, title }) {
                                 flex
                                 justify-center
                                 items-start          
-                        ">
+                            "
+                        >
                             <MovieCard movie={movie} />
                         </SwiperSlide>
                     ))}
