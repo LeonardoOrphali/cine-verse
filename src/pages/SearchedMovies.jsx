@@ -31,7 +31,8 @@ function Search () {
                     setStatus("success")
                 }
 
-            } catch {
+            } catch (err) {
+                console.log(err)
                 setStatus("error")
             }
         }
@@ -52,7 +53,7 @@ function Search () {
     }
 
     return (
-        <>
+        <main>
             <MovieGrid 
                 movies={movies}
                 variant={"grid"}
@@ -67,7 +68,7 @@ function Search () {
                     </>
                 }
             />
-        </>
+        </main>
     )
 }
 

@@ -1,4 +1,4 @@
-import { api } from "./movieDbAPI"
+import { api } from "./movieAPI"
 import { mapMovieDetails } from "../mappers/movie.mapper"
 
 const defaultParams = {

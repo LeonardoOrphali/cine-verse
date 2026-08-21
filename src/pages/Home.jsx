@@ -1,5 +1,6 @@
 import { getPopularMovies, getTrendingMovies } from "../services/movieService"
 import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 
 import Hero from "../components/layout/Hero"
 import MovieGrid from "../components/movie/MovieGrid"
@@ -29,9 +30,10 @@ function Home() {
     }, [])
 
     const heroMovie = popularMovies?.[0]
-    if (!heroMovie) return null
 
     if (loading) return <Loading />
+
+    if (!heroMovie) return null
 
     return (
         <main
@@ -69,28 +71,35 @@ function Home() {
                             text-white/70 
                             mt-2 
                             max-w-xl
+                            line-clamp-4
                         "
                     >
                         {heroMovie.overview}
                     </p>
+                     <Link to={`/movie/${heroMovie.id}`}
+                        className="
+                            w-20
+                            mt-2
+                            duration-300
+                            hover:text-lg
+                        "
+                    >
+                        Ver mais
+                    </Link>
                 </div>
             </Hero>
             <section
                 className="
-                    container
-                    pb-80
+                    pb-30
+                    w-full
                     h-auto
                     flex
                     flex-col
-                    items-start
-                    justify-start
+                    items-center
+                    justify-center
+                    overflow-hidden
                 "
             >         
-                <div
-                    className="
-                        w-full
-                    "
-                >
                     <MovieGrid 
                         movies={popularMovies} 
                         title={"Popular"} 
@@ -98,10 +107,9 @@ function Home() {
                     />
                     <MovieGrid 
                         movies={trendingMovies} 
-                        title={"Do momento"}
+                        title={"Em alta"}
                         variant={"carousel"} 
                     />
-                </div>
             </section>
         </main>
     )

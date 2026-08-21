@@ -4,10 +4,6 @@ export function mapMovieDetails(data) {
         person => person.job === "Director"
     )
 
-    const cinematographer = data.credits.crew.find(
-        person => person.job === "Director of photography"
-    )
-
     const writers = data.credits.crew.filter(
         person => person.department === "Writing"
     )
@@ -28,8 +24,7 @@ export function mapMovieDetails(data) {
 
         director: director.name,
         writers,
-        cinematographer,
 
         cast: data.credits.cast,
     }
-}
+} 

@@ -1,0 +1,49 @@
+.swiper {
+  overflow: visible;
+  width: 100%;
+  padding: 10px 50px;
+}
+
+.swiper-wrapper {
+  overflow: visible;
+}
+
+.carousel {
+  position: relative;
+  z-index: 0;
+}
+
+.carousel:has(.group:hover) {
+  z-index: 30;
+}
+
+.swiper-slide:has(.group:hover) {
+  z-index: 10;
+  position: relative;
+}
+
+.swiper-slide {
+  overflow: visible;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* BUTTONS */
+
+.swiper-button-prev,
+.swiper-button-next{
+    transition:.25s;
+    opacity:0;
+    color: white;
+}
+
+.carousel:hover .swiper-button-prev:not(.swiper-button-disabled),
+.carousel:hover .swiper-button-next:not(.swiper-button-disabled) {
+  opacity: 1;
+}
+
+.swiper-button-disabled {
+  opacity: 0 !important;
+  pointer-events: none;
+}

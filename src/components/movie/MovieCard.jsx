@@ -1,11 +1,9 @@
 import { Link } from "react-router-dom"
 
 import fallbackImg from '../../assets/fallbackImg.png'
+import { TiStarFullOutline } from "react-icons/ti";
 
 function MovieCard({ movie }) {
-    // Verificar a Div acima do H3, o 
-    // Hover passa um pouco para baixo por conta do padding
-    // Mudar o * da nota
     return (
         <Link to={`/movie/${movie.id}`}>
             <div 
@@ -16,9 +14,8 @@ function MovieCard({ movie }) {
                     duration-500
                     group
                     origin-top
-                    hover:absolute
                     hover:scale-120
-                    hover:z-1
+                    hover:z-2
                 "
             >
                 <div 
@@ -58,30 +55,41 @@ function MovieCard({ movie }) {
                         <div 
                             className="
                                 p-4 
+                                gap-4
                                 flex 
                                 justify-center 
                                 flex-col
                             "
                         >
                             <h3 
-                                className="
-                                    mt-2
+                                className="  
+                                    line-clamp-1
                                     font-semibold
                                     text-sm
-                                    line-clamp-2
                                 "
                             >
                                 {movie.title}
                             </h3>
-                            <p 
+                            <div 
                                 className="
-                                    text-green-400 
-                                    text-sm 
-                                    font-semibold
+                                    gap-1
+                                    flex
+                                    flex-row
+                                    items-center
+                                    justify-end
+                                    text-(--rating)
                                 "
                             >
-                                * {movie.vote_average.toFixed(1)}
-                            </p>
+                                <TiStarFullOutline />
+                                <p 
+                                    className="
+                                        text-sm 
+                                        font-semibold
+                                    "
+                                >
+                                    {movie.vote_average.toFixed(1)}
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>

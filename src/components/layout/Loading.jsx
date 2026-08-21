@@ -2,10 +2,11 @@
 function Loading() {
     return (
         <div className="
+            min-h-[60vh]
+            h-screen
             flex
             items-center
             justify-center
-            h-screen
         ">
             <div className="
                 h-12

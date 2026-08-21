@@ -4,54 +4,49 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 
 import MovieCard from "./MovieCard"
-import './MovieGrid.css'
+import './MovieCarrousel.css'
 
 function MovieGridView({ movies, title }) {
     return (
         <div 
-            lassName="
-                w-full             
+            className="
+                w-[95%]
+                h-auto
+                pb-20
+                relative
                 carousel
-                overflow-x-hidden
+                mx-auto
             "
         >
             <h1 
                 className="
+                    pl-12.5
+                    w-full
                     flex 
                     items-start 
-                    w-full
                 "
             >
                 {title}
             </h1>
             <Swiper
                 modules={[Navigation]}
-                slidesPerView={"auto"}
+                slidesPerView={7}
+                slidesPerGroup={7}
                 allowTouchMove={false}
-                spaceBetween={5}
-                speed={400}
-                navigation
-                loop
+                spaceBetween={20}
+                speed={550}
+                navigation={true}
                 className="
-                    h-100
                     w-full
                     overflow-visible
                 "
             >
                     {movies.map((movie) => (
-                        <SwiperSlide 
-                            key={movie.id} 
-                            className="
-                                w-60!
-                                flex
-                                justify-center
-                                items-start          
-                            "
-                        >
+                        <SwiperSlide key={movie.id}>
                             <MovieCard movie={movie} />
                         </SwiperSlide>
                     ))}
-            </Swiper>                
+            </Swiper>                 
         </div>
     )
 }

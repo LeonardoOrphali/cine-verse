@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
 
 import SearchBar from "./SearchBar"
+import ProjectorLogo from "../../assets/ProjectorLogo-icon.png"
 
 function Header() {
     return(
@@ -8,7 +9,7 @@ function Header() {
             className="
                 top-0
                 left-0
-                z-5
+                z-50
                 fixed
                 w-full
                 flex
@@ -35,16 +36,16 @@ function Header() {
             >
                 <div 
                     className="
+                        gap-4
                         flex 
                         flex-row 
                         items-center
                     "
                 >
-                    <img 
-                        src="#" 
-                        alt="logo" 
+                    <img
+                        src={ProjectorLogo}
+                        alt="CineVerse logo" 
                         className="
-                            h-10 
                             w-10
                         "
                     />
@@ -56,10 +57,10 @@ function Header() {
                             "
                         >
                             <Link to="/">
-                                <li>Home</li>
+                                <li className="hover:text-(--main-text)/80">Home</li>
                             </Link>
-                            <li>Populares</li>
-                            <li>Em alta</li>
+                            <li className="hover:text-(--main-text)/70">Populares</li>
+                            <li className="hover:text-(--main-text)/70">Em alta</li>
                         </ul>
                     </nav>
                 </div>
@@ -71,15 +72,7 @@ function Header() {
                         justify-end
                     "
                 >
-                    <div 
-                        className="
-                            flex 
-                            gap-2
-                        "
-                    >
-                        <SearchBar />
-                        <button>DarkMode</button>
-                    </div>
+                    <SearchBar />
                 </div>
             </div>
         </header>

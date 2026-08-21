@@ -5,6 +5,7 @@ import { getMovieDetails } from "../services/movieService"
 
 import Hero from "../components/layout/Hero"
 import SideBar from "../components/layout/SideBar"
+import CastGrid from "../components/layout/CastGrid"
 import Loading from "../components/layout/Loading"
 
 function MovieDetails() {
@@ -21,18 +22,19 @@ function MovieDetails() {
             } finally {
                 setLoading(false)
             }
-
         }
         loadMovie()
     }, [id])
 
     const heroMovie = movie
-    if (!heroMovie) return null
     
     if (loading) return <Loading />
 
+    if (!heroMovie) return null
+
+    let overview = movie.overview == "" ? "Descrição não encontrada." : movie.overview
+
     return (
-        <>
             <main 
                 className="
                     w-full
@@ -87,44 +89,51 @@ function MovieDetails() {
                             <h2>* {movie.average.toFixed(1)}</h2>
                         </div>
                     </div>
-                    <div
+                    <div 
                         className="
-                            pt-20
-                            gap-10
+                            gap-30
+                            w-full
                             grid
                             grid-cols-3
-                            justify-items-end
+                            
                         "
                     >
                         <div
                             className="
+                                pt-20
                                 col-span-2
-                                container
-                                mb-100
                             "
                         >
-                            <h2 
+                            <div
                                 className="
-                                    text-4xl
-                                    mb-3
+                                    container
+                                    mb-20
                                 "
                             >
-                                Sinopse
-                            </h2>
-                            <hr 
-                                className="
-                                    mb-10
-                                "
-                            />
-                            <p>
-                                {movie.overview}
-                            </p>
+                                <h2 
+                                    className="
+                                        text-4xl
+                                        mb-3
+                                    "
+                                >
+                                    Sinopse
+                                </h2>
+                                <hr 
+                                    className="
+                                        mb-10
+                                        border-(--border)
+                                    "
+                                />
+                                <p>
+                                    {overview}
+                                </p>
+                            </div>
+                            <CastGrid movie={movie} />
                         </div>
                         <SideBar movie={movie} />
                     </div>
                 </section>
             </main>
-        </>
     )
 }
 
