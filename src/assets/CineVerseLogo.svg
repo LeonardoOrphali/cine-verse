@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="50 50 100 100" width="32" height="32">
+  <!-- Icon background-->
+  <defs>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e94560" />
+      <stop offset="100%" stop-color="#ff6b6b" />
+    </linearGradient>
+  </defs>
+
+  <!-- Movie roll -->
+  <g transform="translate(55, 55)">
+    <rect x="0" y="0" width="15" height="15" fill="#fff" opacity="0.9" rx="2" />
+    <rect x="0" y="30" width="15" height="15" fill="#fff" opacity="0.9" rx="2" />
+    <rect x="0" y="60" width="15" height="15" fill="#fff" opacity="0.9" rx="2" />
+    <rect x="70" y="0" width="15" height="15" fill="#fff" opacity="0.9" rx="2" />
+    <rect x="70" y="30" width="15" height="15" fill="#fff" opacity="0.9" rx="2" />
+    <rect x="70" y="60" width="15" height="15" fill="#fff" opacity="0.9" rx="2" />
+  </g>
+
+  <!-- Play icon -->
+  <path d="M 86 77 L 116 92.5 L 86 108 Z" fill="url(#accentGrad)" />
+</svg>

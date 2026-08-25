@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 
 import { getMovieDetails } from "../services/movieService"
+import { TiStarFullOutline } from "react-icons/ti";
 
 import Hero from "../components/layout/Hero"
 import SideBar from "../components/movie/SideBar"
@@ -71,6 +72,7 @@ function MovieDetails() {
                             className="
                                 container
                                 flex
+                                items-center
                                 gap-4
                             "
                         >
@@ -86,7 +88,19 @@ function MovieDetails() {
                                     {genre.name}
                                 </h2>
                             ))}
-                            <h2>* {movie.average.toFixed(1)}</h2>
+                            <div
+                                className="
+                                    gap-1
+                                    flex 
+                                    items-center 
+                                    text-(--rating)
+                                "
+                            >
+                                <TiStarFullOutline />
+                                <h2>
+                                    {movie.average.toFixed(1)}
+                                </h2>
+                            </div>
                         </div>
                     </div>
                     <div 

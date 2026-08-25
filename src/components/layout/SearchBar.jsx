@@ -21,7 +21,7 @@ function SearchBar() {
         <form 
             onSubmit={handleSearch}
             className="
-                py-1
+                py-1.5
                 px-4
                 gap-2
                 duration-300
@@ -30,10 +30,11 @@ function SearchBar() {
                 justify-between
                 border
                 rounded-2xl
-                border-(--background)/20
-                hover:border-(--background)/25
+                border-white/40
+                hover:border-white/70
                 hover:scale-x-105
                 focus-within:scale-x-105
+                focus-within:border-white/70
             "
         >
             <input 
@@ -51,7 +52,7 @@ function SearchBar() {
                 <CiSearch 
                     size={22} 
                     className="
-                        hover:text-(--secondary-text)
+                        hover:text-white/50
                     "
                 />
             </button>

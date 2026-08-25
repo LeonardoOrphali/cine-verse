@@ -1,5 +1,5 @@
-import  ProjectorLogo  from "../../assets/ProjectorLogo-Icon.png"
-import TMDBLogo  from "../../assets/TMDBLogo-Icon.svg"
+import  CineVerseLogo  from "../../assets/CineVerseLogo.svg"
+import TMDBLogo  from "../../assets/TMDBLogo.svg"
 import { FaLinkedin } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
 import { IoMail } from "react-icons/io5";
@@ -34,10 +34,10 @@ function Footer() {
             >
                 <div>
                     <img 
-                        src={ProjectorLogo} 
+                        src={CineVerseLogo} 
                         alt="Cineverse logo" 
                         className="
-                            w-20
+                            w-18
                         "
                     />
                     <div 
