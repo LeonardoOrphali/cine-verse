@@ -1,9 +1,11 @@
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 
 import SearchBar from "./SearchBar"
 import ProjectorLogo from "../../assets/ProjectorLogo-icon.png"
 
 function Header() {
+    const { pathname } = useLocation()
+
     return(
         <header 
             className="
@@ -23,12 +25,12 @@ function Header() {
                     pr-10
                     pl-10
                     mt-2
+                    border-2
                     container 
                     flex
                     items-center
                     justify-between
                     rounded-2xl
-                    border-2
                     border-(--background)/10
                     bg-(--background)/20
                     backdrop-blur-sm
@@ -42,37 +44,40 @@ function Header() {
                         items-center
                     "
                 >
-                    <img
-                        src={ProjectorLogo}
-                        alt="CineVerse logo" 
-                        className="
-                            w-10
-                        "
-                    />
-                    <nav>
-                        <ul 
-                            className="
-                                flex 
-                                gap-2
-                            "
-                        >
-                            <Link to="/">
-                                <li className="hover:text-(--main-text)/80">Home</li>
+                    {pathname === "/" 
+                        ?   <img
+                                src={ProjectorLogo}
+                                alt="CineVerse logo" 
+                                title="Home"
+                                className="
+                                    w-10
+                                    cursor-pointer
+                                "
+                            />
+                        :   <Link to="/" viewTransition>
+                                <img
+                                    src={ProjectorLogo}
+                                    alt="CineVerse logo" 
+                                    title="Home"
+                                    className="
+                                        w-10
+                                    "
+                                />
                             </Link>
-                            <li className="hover:text-(--main-text)/70">Populares</li>
-                            <li className="hover:text-(--main-text)/70">Em alta</li>
-                        </ul>
-                    </nav>
+                    }
                 </div>
                 <div 
                     className="
                         w-lg
                         flex
                         items-center
-                        justify-end
+                        justify-center
                     "
                 >
                     <SearchBar />
+                </div>
+                <div>
+                    
                 </div>
             </div>
         </header>

@@ -1,6 +1,8 @@
 import MovieCard from "./MovieCard"
 
-function MovieGridView({ movies, title }) {
+function MovieGridView({ movies, title, isloading }) {
+    const skeletons = Array.from({ length: 20 })
+
     return(
         <div 
             className="
@@ -34,16 +36,26 @@ function MovieGridView({ movies, title }) {
                         gap-5
                     "
                 >
-                    {movies.map((movie) => (
-                        <div 
-                            key={movie.id} 
-                            className="
-                                mb-5
-                            "
-                        >
-                            <MovieCard  movie={movie} />
-                        </div>
-                    ))}
+                    {isloading
+                        ?   skeletons.map((_, index) => (
+                                <MovieCard
+                                    key={index}
+                                    loading
+                                />
+                            ))
+                        :   <>
+                                {movies.map((movie) => (
+                                    <div 
+                                        key={movie.id} 
+                                        className="
+                                            mb-5
+                                        "
+                                    >
+                                        <MovieCard  movie={movie}  />
+                                    </div>
+                                ))}
+                            </>
+                    }
                 </div>
             </div>
         </div>

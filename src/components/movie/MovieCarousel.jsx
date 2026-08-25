@@ -4,9 +4,12 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 
 import MovieCard from "./MovieCard"
-import './MovieCarrousel.css'
+import './MovieCarousel.css'
 
-function MovieGridView({ movies, title }) {
+function MovieGridView({ movies, title, isloading }) {
+    
+    const skeletons = Array.from({ length: 7 })
+    
     return (
         <div 
             className="
@@ -40,12 +43,19 @@ function MovieGridView({ movies, title }) {
                     w-full
                     overflow-visible
                 "
-            >
-                    {movies.map((movie) => (
-                        <SwiperSlide key={movie.id}>
-                            <MovieCard movie={movie} />
+            > 
+                {isloading
+                    ?   skeletons.map((_, index) => (
+                        <SwiperSlide key={index}>
+                            <MovieCard loading />
                         </SwiperSlide>
-                    ))}
+                        ))
+                    :   movies.map((movie) => (
+                            <SwiperSlide key={movie.id}>
+                                <MovieCard movie={movie} />
+                            </SwiperSlide>
+                        ))
+                }
             </Swiper>                 
         </div>
     )

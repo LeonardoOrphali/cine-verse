@@ -2,7 +2,6 @@ import { useSearchParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 
 import MovieGrid from "../components/movie/MovieGrid"
-import Loading from "../components/layout/Loading"
 import NotFound from "../components/layout/NotFound"
 
 import { searchMovies } from "../services/movieService"
@@ -12,14 +11,14 @@ function Search () {
     const query = searchParams.get("q")
 
     const [movies, setMovies] = useState([])
-    const [status, setStatus] = useState("loading")
+    const [status, setStatus] = useState("")
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         if (!query) return
+        
 
         async function loadMovies() {
-            setStatus("loading")
-
             try {
                 const result = await searchMovies(query)
 
@@ -27,22 +26,19 @@ function Search () {
 
                 if (result.length === 0) {
                     setStatus("empty")
-                } else {
-                    setStatus("success")
                 }
 
             } catch (err) {
                 console.log(err)
                 setStatus("error")
+            } finally {
+                setLoading(false)
             }
         }
 
         loadMovies()
     }, [query])
-
-    if (status === "loading") {
-        return <Loading />
-    }
+    
 
     if (status === "empty") {
         return <NotFound />
@@ -57,6 +53,7 @@ function Search () {
             <MovieGrid 
                 movies={movies}
                 variant={"grid"}
+                isloading={loading}
                 title={
                     <>
                         <span className="text-(--secondary-text)">

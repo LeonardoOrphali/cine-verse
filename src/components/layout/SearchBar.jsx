@@ -12,7 +12,7 @@ function SearchBar() {
         e.preventDefault()
         if (!searchQuery.trim()) return
 
-        navigate(`/search?q=${encodeURIComponent(searchQuery)}`)
+        navigate(`/search?q=${encodeURIComponent(searchQuery)}`, { viewTransition: true })
 
         setSearchQuery("")
     }
@@ -22,10 +22,12 @@ function SearchBar() {
             onSubmit={handleSearch}
             className="
                 py-1
-                px-2
+                px-4
                 gap-2
                 duration-300
+                w-md
                 flex
+                justify-between
                 border
                 rounded-2xl
                 border-(--background)/20
@@ -40,8 +42,8 @@ function SearchBar() {
                 placeholder="Pesquisar" 
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="
-                    ml-2
                     outline-0
+                    w-full
                     text-(--main-text)
                 "
             />

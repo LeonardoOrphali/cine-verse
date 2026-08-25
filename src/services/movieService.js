@@ -1,5 +1,5 @@
 import { api } from "./movieAPI"
-import { mapMovieDetails } from "../mappers/movie.mapper"
+import { mapMovieDetails } from "../mappers/movieMapper"
 
 const defaultParams = {
     language: 'pt-BR',

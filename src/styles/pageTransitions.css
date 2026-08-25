@@ -1,0 +1,21 @@
+::view-transition-old(root) {
+    animation: page-out 300ms ease;
+}
+
+::view-transition-new(root) {
+    animation: page-in 300ms ease;
+}
+
+@keyframes page-out {
+    to {
+        opacity: 0;
+        transform: scale(0.98);
+    }
+}
+
+@keyframes page-in {
+    from {
+        opacity: 0;
+        transform: scale(1.02);
+    }
+}

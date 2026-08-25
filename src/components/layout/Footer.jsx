@@ -1,5 +1,8 @@
 import  ProjectorLogo  from "../../assets/ProjectorLogo-Icon.png"
 import TMDBLogo  from "../../assets/TMDBLogo-Icon.svg"
+import { FaLinkedin } from "react-icons/fa";
+import { FaGithub } from "react-icons/fa";
+import { IoMail } from "react-icons/io5";
 
 function Footer() {
     return (
@@ -53,42 +56,67 @@ function Footer() {
                                 w-20
                             "
                         />
-                        <p><i>
-                            This product uses the TMDB API but is not 
-                            endorsed or certified by TMDB.</i>
+                        <p>
+                            <i>
+                                This product uses the TMDB API but is not 
+                                endorsed or certified by TMDB.
+                            </i>
                         </p>
                     </div>
                 </div>
                 <div 
                     className="
                         items-center
-                        gap-6
+                        gap-8
 
                         *:flex
-                        *:gap-2
+                        *:gap-4
                     "
                 >
                     <nav>
                         <a 
                             href="mailto:leonardoorphali2@gmail.com"
                             target="_blank"
+                            title="Email"
                         >
-                            Email
+                            <IoMail 
+                                size={25}
+                                className="
+                                    hover:text-[#EA4335] 
+                                    hover:scale-[110%]
+                                "
+                            />
                         </a>
                         <a 
                             href="https://github.com/LeonardoOrphali"
                             target="_blank"
+                            title="Github"
                         >
-                            GitHub
+                            <FaGithub 
+                                size={25}
+                                className="
+                                    hover:text-[#5C6BC0]
+                                    hover:scale-[110%]
+                                "
+                            />
                         </a>
                         <a 
                             href="https://www.linkedin.com/in/leonardo-orphali/"
                             target="_blank"
+                            title="Linkedin"
                         >
-                            Linkedin
+                            <FaLinkedin 
+                                size={25} 
+                                className="
+                                    hover:text-[#0266C8]
+                                    hover:scale-[110%]
+                                "
+                            />
                         </a>
                     </nav>
-                    <h2>&copy; 2026 CineVerse. Desenvolvido por Leonardo Orphali</h2>
+                    <h2>
+                        &copy; 2026 CineVerse. Desenvolvido por Leonardo Orphali
+                    </h2>
                 </div>
             </div>
         </footer>

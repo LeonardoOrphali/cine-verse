@@ -2,7 +2,7 @@ import MovieGridView from "./MovieGridView"
 import MovieCarousel from "./MovieCarousel"
 
 function MovieGrid({ variant, ...props }) {
-
+    
     switch (variant) {
 
         case "carousel":

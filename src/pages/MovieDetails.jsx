@@ -4,8 +4,8 @@ import { useEffect, useState } from "react"
 import { getMovieDetails } from "../services/movieService"
 
 import Hero from "../components/layout/Hero"
-import SideBar from "../components/layout/SideBar"
-import CastGrid from "../components/layout/CastGrid"
+import SideBar from "../components/movie/SideBar"
+import CastGrid from "../components/movie/CastGrid"
 import Loading from "../components/layout/Loading"
 
 function MovieDetails() {
@@ -106,8 +106,8 @@ function MovieDetails() {
                         >
                             <div
                                 className="
-                                    container
                                     mb-20
+                                    container
                                 "
                             >
                                 <h2 

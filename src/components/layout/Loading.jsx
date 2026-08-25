@@ -13,7 +13,7 @@ function Loading() {
                 w-12
                 rounded-full
                 border-4
-                border-blue-500
+                border-(--primary)
                 border-t-transparent
                 animate-spin
             "/>

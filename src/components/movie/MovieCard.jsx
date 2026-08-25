@@ -3,15 +3,39 @@ import { Link } from "react-router-dom"
 import fallbackImg from '../../assets/fallbackImg.png'
 import { TiStarFullOutline } from "react-icons/ti";
 
-function MovieCard({ movie }) {
+import Skeleton from "react-loading-skeleton"
+import "react-loading-skeleton/dist/skeleton.css"
+
+function MovieCard({ movie, loading }) {
+    if (loading) {
+        return (
+            <div
+                className="
+                    w-56
+                    h-80
+                    rounded-md
+                    overflow-hidden
+                "
+            >
+                <Skeleton 
+                    width="100%"
+                    height="100%"
+                    baseColor="#181818"
+                    highlightColor="#292929"
+                />
+            </div>
+        )
+    }
+
     return (
-        <Link to={`/movie/${movie.id}`}>
+        <Link to={`/movie/${movie.id}`} viewTransition> 
             <div 
                 className="
-                    relative
                     w-56
                     h-80
                     duration-500
+                    select-none
+                    relative
                     group
                     origin-top
                     hover:scale-120
@@ -30,6 +54,7 @@ function MovieCard({ movie }) {
                         src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                         onError={(e) => (e.currentTarget.src = fallbackImg)}
                         alt={movie.title}
+                        loading="lazy"
                         className="
                             w-full
                             h-80
@@ -94,7 +119,7 @@ function MovieCard({ movie }) {
                     </div>
                 </div>
             </div>
-        </Link>
+        </Link>  
     )
 }
 

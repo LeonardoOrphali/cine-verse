@@ -4,11 +4,11 @@ import { Link } from "react-router-dom"
 
 import Hero from "../components/layout/Hero"
 import MovieGrid from "../components/movie/MovieGrid"
-import Loading from "../components/layout/Loading"
 
 function Home() {
     const [popularMovies, setPopularMovies] = useState([])
     const [trendingMovies, setTrendingMovies] = useState([])
+    
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
@@ -18,7 +18,6 @@ function Home() {
                     getPopularMovies(),
                     getTrendingMovies()
                 ])
-
                 setPopularMovies(popular)
                 setTrendingMovies(trending)
             } finally {
@@ -30,10 +29,7 @@ function Home() {
     }, [])
 
     const heroMovie = popularMovies?.[0]
-
-    if (loading) return <Loading />
-
-    if (!heroMovie) return null
+    if (!heroMovie && !loading) return null
 
     return (
         <main
@@ -46,47 +42,52 @@ function Home() {
                 justify-start 
             "
         >
-            <Hero movie={heroMovie}>
-                <div 
-                    className="
-                        left-40
-                        top-70
-                        absolute
-                        flex
-                        flex-col
-                    "
-                >
-                    <h1
+            <Hero 
+                movie={heroMovie}
+                isloading={loading}
+            >
+                {heroMovie && (
+                    <div 
                         className="
-                            text-white 
-                            text-4xl 
-                            font-bold
+                            left-40
+                            top-70
+                            absolute
+                            flex
+                            flex-col
                         "
                     >
-                        {heroMovie.title}
-                    </h1>
-                    <p
-                        className="
-                            w-[80%]
-                            text-white/70 
-                            mt-2 
-                            max-w-xl
-                            line-clamp-4
-                        "
-                    >
-                        {heroMovie.overview}
-                    </p>
-                     <Link to={`/movie/${heroMovie.id}`}
-                        className="
-                            w-20
-                            mt-2
-                            duration-300
-                            hover:text-lg
-                        "
-                    >
-                        Ver mais
-                    </Link>
-                </div>
+                        <h1
+                            className="
+                                text-white 
+                                text-4xl 
+                                font-bold
+                            "
+                        >
+                            {heroMovie.title}
+                        </h1>
+                        <p
+                            className="
+                                w-[80%]
+                                text-white/70 
+                                mt-2 
+                                max-w-xl
+                                line-clamp-4
+                            "
+                        >
+                            {heroMovie.overview}
+                        </p>
+                        <Link to={`/movie/${heroMovie.id}`}
+                            className="
+                                w-20
+                                mt-2
+                                duration-200
+                                hover:scale-x-110
+                            "
+                        >
+                            Ver mais
+                        </Link>
+                    </div>
+                )}
             </Hero>
             <section
                 className="
@@ -102,12 +103,14 @@ function Home() {
             >         
                     <MovieGrid 
                         movies={popularMovies} 
-                        title={"Popular"} 
+                        title={"Popular"}
+                        isloading={loading}
                         variant={"carousel"}
                     />
                     <MovieGrid 
                         movies={trendingMovies} 
                         title={"Em alta"}
+                        isloading={loading}
                         variant={"carousel"} 
                     />
             </section>
