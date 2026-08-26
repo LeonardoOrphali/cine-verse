@@ -21,11 +21,11 @@ function SearchBar() {
         <form 
             onSubmit={handleSearch}
             className="
+                w-50
                 py-1.5
                 px-4
                 gap-2
                 duration-300
-                w-md
                 flex
                 justify-between
                 border
@@ -35,6 +35,9 @@ function SearchBar() {
                 hover:scale-x-105
                 focus-within:scale-x-105
                 focus-within:border-white/70
+
+                sm:w-sm
+                lg:w-md
             "
         >
             <input 

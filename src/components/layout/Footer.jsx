@@ -9,30 +9,43 @@ function Footer() {
         <footer 
             className="
                 w-full
-                h-30
+                h-60
                 mt-50
+                text-sm
                 bg-(--surface)
                 border
                 border-(--border)
                 flex
                 justify-center
-                
-                *:flex
+
+                xs:text-md
+                sm:text-[1rem]
             "
         >
             <div
                 className="
                     w-[80%]
-                    flex
                     items-center
-                    justify-between
+                    justify-evenly
+                    flex
+                    flex-col-reverse
 
                     *:flex
                     *:items-center
+                    *justify-start
 
+                    xs:*:justify-center
+                    md:flex-row
+                    md:justify-between
+                    lg:*:justify-start
                 "
             >
-                <div>
+                <div 
+                    className="
+                        lg:w-[50%]
+                        xl:w-[40%]
+                    "
+                >
                     <img 
                         src={CineVerseLogo} 
                         alt="Cineverse logo" 
@@ -47,8 +60,16 @@ function Footer() {
                             border
                             border-(--border)
                         "
-                    ></div>
-                    <div className="w-[45%]">
+                    >  
+                    </div>
+                    <div 
+                        className="
+                            w-full
+
+                            xs:w-[50%]
+                            sm:w-[60%]
+                        "
+                    >
                         <img 
                             src={TMDBLogo} 
                             alt="TMDB logo" 
@@ -66,11 +87,17 @@ function Footer() {
                 </div>
                 <div 
                     className="
+                        gap-4
+                        flex
+                        flex-col
                         items-center
-                        gap-8
+                        text-center
 
                         *:flex
                         *:gap-4
+
+                        md:gap-8
+                        lg:flex-row
                     "
                 >
                     <nav>
@@ -114,9 +141,30 @@ function Footer() {
                             />
                         </a>
                     </nav>
-                    <h2>
-                        &copy; 2026 CineVerse. Desenvolvido por Leonardo Orphali
-                    </h2>
+                    <span 
+                        className="
+                            items-center!
+                            flex-col
+                            gap-0!
+
+                            sm:w-full
+                            md:w-[90%]
+                            lg:w-full
+                            lg:flex-row
+                            lg:text-start
+                        "
+                    >    
+                        <h2>
+                            &copy; 2026 CineVerse. &nbsp;
+                            <br 
+                                className="
+                                    sm:block 
+                                    xl:hidden
+                                " 
+                            />
+                            Desenvolvido por Leonardo Orphali
+                        </h2>
+                    </span>
                 </div>
             </div>
         </footer>

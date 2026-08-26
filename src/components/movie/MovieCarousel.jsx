@@ -46,9 +46,9 @@ function MovieGridView({ movies, title, isloading }) {
             > 
                 {isloading
                     ?   skeletons.map((_, index) => (
-                        <SwiperSlide key={index}>
-                            <MovieCard loading />
-                        </SwiperSlide>
+                            <SwiperSlide key={index}>
+                                <MovieCard loading />
+                            </SwiperSlide>
                         ))
                     :   movies.map((movie) => (
                             <SwiperSlide key={movie.id}>

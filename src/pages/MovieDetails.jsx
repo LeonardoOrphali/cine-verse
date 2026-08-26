@@ -76,18 +76,56 @@ function MovieDetails() {
                                 gap-4
                             "
                         >
-                            <h2>{movie.release}</h2>
-                            <h2>{movie.runtime}m</h2>
+                            <h2>
+                                {movie.release}
+                            </h2>
+                            <span 
+                                className="
+                                    text-gray-500
+                                "
+                            >
+                                &bull;
+                            </span>
+                            <h2 
+                                className="
+                                    text-(--secondary-text)
+                                "
+                            >
+                                {movie.runtime}m
+                            </h2>
+                            <span 
+                                className="
+                                    text-gray-500
+                                "
+                            >
+                                &bull;
+                            </span>
                             {movie.genres.map((genre) => (
-                                <h2 
-                                    key={genre.id}
+                                <div 
                                     className="
-                                        text-(--secondary-text)
-                                    "    
+                                        px-2
+                                        border  
+                                        bg-(--background)  
+                                        border-(--border)
+                                    "
                                 >
-                                    {genre.name}
-                                </h2>
+                                    <h2 
+                                        key={genre.id}
+                                        className="
+                                            text-(--secondary-text)
+                                        "    
+                                    >
+                                        {genre.name}
+                                    </h2>
+                                </div>
                             ))}
+                            <span 
+                                className="
+                                    text-gray-500
+                                "
+                            >
+                                &bull;
+                            </span>
                             <div
                                 className="
                                     gap-1

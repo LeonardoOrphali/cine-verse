@@ -7,20 +7,20 @@ import CineVerseLogo from "../../assets/CineVerseLogo.svg"
 function Header() {
     const { pathname } = useLocation()
 
-    const [isScrolled, setIsScrolled] = useState(() => window.scrollY > 30);
+    const [isScrolled, setIsScrolled] = useState(() => window.scrollY > 30)
 
     useEffect(() => {
         const handleScroll = () => {
-        if (window.scrollY > 30) {
-            setIsScrolled(true);
-        } else {
-            setIsScrolled(false);
+            if (window.scrollY > 30) {
+                setIsScrolled(true)
+            } else {
+                setIsScrolled(false)
+            }
         }
-        };
 
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+        window.addEventListener('scroll', handleScroll)
+        return () => window.removeEventListener('scroll', handleScroll)
+    }, [])
 
     return(
         <header 
@@ -29,7 +29,7 @@ function Header() {
                 left-0
                 w-full
                 h-18
-                px-20
+                px-8
                 z-50
                 fixed
                 flex
@@ -37,6 +37,8 @@ function Header() {
                 justify-between
                 transition-colors
                 duration-800
+
+                sm:px-14
                 ${
                     isScrolled 
                         ?   'bg-black'
@@ -60,6 +62,9 @@ function Header() {
                                 title="Home"
                                 className="
                                     cursor-pointer
+                                    max-sm
+                                    w-16
+                                    xs:w-12
                                 "
                             />
                         :   <Link to="/" viewTransition>
@@ -82,7 +87,9 @@ function Header() {
                     <SearchBar />
                 </div>
                 <div>
-                    <p>Profile</p>
+                    <p>
+                        Profile
+                    </p>
                 </div>
         </header>
     )
