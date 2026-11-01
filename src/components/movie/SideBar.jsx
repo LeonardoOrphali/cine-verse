@@ -13,8 +13,7 @@ function SideBar({ movie }) {
     return (
         <aside
             className="
-                w-[80%]
-                h-115
+                w-full min-w-0 h-fit lg:min-h-115 xl:w-[90%] 2xl:w-[80%]
                 flex
                 bg-(--surface)
                 border-(--border)
@@ -25,8 +24,7 @@ function SideBar({ movie }) {
         >
             <div
                 className="
-                    mx-10
-                    h-full
+                    p-6 xl:p-10 min-w-0 wrap-anywhere
                     w-full
                     flex
                     flex-col

@@ -8,7 +8,7 @@ function CastGrid({ movie }) {
         >
             <h2 
                 className="
-                    text-4xl
+                    text-3xl sm:text-4xl
                     mb-3
                 "
             >
@@ -23,8 +23,7 @@ function CastGrid({ movie }) {
             <div
                 className="
                     grid
-                    grid-cols-5
-                    items-center
+                    grid-cols-2 gap-x-4 gap-y-8 items-start sm:grid-cols-3 xl:grid-cols-5
                 "
             >
                 {movie.cast.slice(0,5).map((actor) => (
@@ -32,7 +31,7 @@ function CastGrid({ movie }) {
                         key={actor.id}
                         className="
                             flex
-                            flex-col
+                            flex-col min-w-0 text-center wrap-anywhere
                             items-center
                         "
                     >
@@ -40,7 +39,7 @@ function CastGrid({ movie }) {
                                 src={"https://image.tmdb.org/t/p/original" + actor.profile_path}
                                 alt={"Foto de ator" + actor.name}
                                 className="
-                                    size-36
+                                    w-full max-w-36 aspect-square
                                     rounded-full
                                     object-cover
                                     border

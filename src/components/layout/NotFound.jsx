@@ -2,7 +2,7 @@
 function NotFound() {
     return (
         <div className="
-            h-screen
+            min-h-screen px-4 pt-32 text-center
             flex
             items-center
             justify-center

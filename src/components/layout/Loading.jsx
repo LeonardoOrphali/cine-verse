@@ -3,7 +3,7 @@ function Loading() {
     return (
         <div className="
             min-h-[60vh]
-            h-screen
+            min-h-screen w-full pt-32
             flex
             items-center
             justify-center

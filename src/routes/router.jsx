@@ -4,11 +4,16 @@ import App from "../App"
 import Home from "../pages/Home"
 import Search from "../pages/SearchedMovies"
 import MovieDetails from "../pages/MovieDetails"
+import Favorites from "../pages/Favorites"
 
 const router = createBrowserRouter([
     {
         element:<App />,
         children:[
+            {
+                path: "/favoritos",
+                element: <Favorites />
+            },
             {
                 path: "/",
                 element: <Home />

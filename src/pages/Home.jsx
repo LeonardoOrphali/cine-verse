@@ -1,57 +1,49 @@
-import { getPopularMovies, getTrendingMovies } from "../services/movieService"
-import { useEffect, useState } from "react"
+import { getPopularMovies, getTrendingMovies, getNowPlayingMovies, getUpcomingMovies, getTopRatedMovies } from "../services/movieService"
 import { Link } from "react-router-dom"
 
 import Hero from "../components/layout/Hero"
-import MovieGrid from "../components/movie/MovieGrid"
+import MovieSection, { MovieSectionContent } from "../components/movie/MovieSection"
+import GenreSection from "../components/movie/GenreSection"
+import useMovieResource from "../hooks/useMovieResource"
 
 function Home() {
-    const [popularMovies, setPopularMovies] = useState([])
-    const [trendingMovies, setTrendingMovies] = useState([])
-    
-    const [loading, setLoading] = useState(true)
-
-    useEffect(() => {
-        async function loadHomeData() {
-            try {
-                const [popular, trending] = await Promise.all([
-                    getPopularMovies(),
-                    getTrendingMovies()
-                ])
-                setPopularMovies(popular)
-                setTrendingMovies(trending)
-            } finally {
-                setLoading(false)
-            }
-        }
-
-        loadHomeData()
-    }, [])
-
-    const heroMovie = popularMovies?.[0]
-    if (!heroMovie && !loading) return null
+    const popular = useMovieResource(getPopularMovies)
+    const loading = popular.status === 'loading'
+    const heroMovie = popular.data[0]
 
     return (
         <main
-            className="
+            className={`
                 w-full
                 h-full
                 flex
                 flex-col
                 items-center
-                justify-start 
-            "
+                justify-start
+                ${!heroMovie && !loading ? 'pt-36 sm:pt-24' : ''}
+            `}
         >
-            <Hero 
+            {(heroMovie || loading) && <Hero
+                className="home-hero"
                 movie={heroMovie}
                 isloading={loading}
             >
                 {heroMovie && (
                     <div 
                         className="
-                            left-40
-                            top-70
-                            absolute
+                            w-full
+                            min-w-0
+                            px-4
+                            self-end
+                            pt-32
+                            pb-8
+                            sm:self-auto
+                            sm:py-36
+                            sm:px-14
+                            lg:px-30
+                            xl:px-40
+                            lg:pt-70
+                            lg:pb-32
                             flex
                             flex-col
                         "
@@ -59,7 +51,13 @@ function Home() {
                         <h1
                             className="
                                 text-white 
-                                text-4xl 
+                                text-2xl
+                                leading-7
+                                line-clamp-2
+                                sm:line-clamp-none
+                                sm:leading-10
+                                sm:text-4xl
+                                wrap-anywhere
                                 font-bold
                             "
                         >
@@ -67,11 +65,18 @@ function Home() {
                         </h1>
                         <p
                             className="
-                                w-[80%]
+                                w-full
+                                lg:w-[80%]
                                 text-white/70 
                                 mt-2 
                                 max-w-xl
-                                line-clamp-4
+                                lg:max-w-[29rem]
+                                text-sm
+                                leading-5
+                                line-clamp-2
+                                sm:text-base
+                                sm:leading-6
+                                sm:line-clamp-4
                             "
                         >
                             {heroMovie.overview}
@@ -88,10 +93,11 @@ function Home() {
                         </Link>
                     </div>
                 )}
-            </Hero>
+            </Hero>}
             <section
                 className="
-                    pb-30
+                    pb-12
+                    lg:pb-30
                     w-full
                     h-auto
                     flex
@@ -101,18 +107,12 @@ function Home() {
                     overflow-hidden
                 "
             >         
-                    <MovieGrid 
-                        movies={popularMovies} 
-                        title={"Popular"}
-                        isloading={loading}
-                        variant={"carousel"}
-                    />
-                    <MovieGrid 
-                        movies={trendingMovies} 
-                        title={"Em alta"}
-                        isloading={loading}
-                        variant={"carousel"} 
-                    />
+                    <MovieSectionContent title="Popular" resource={popular} />
+                    <MovieSection title="Em alta" loadMovies={getTrendingMovies} />
+                    <MovieSection title="Em cartaz" loadMovies={getNowPlayingMovies} />
+                    <MovieSection title="Em breve" loadMovies={getUpcomingMovies} />
+                    <MovieSection title="Mais bem avaliados" loadMovies={getTopRatedMovies} />
+                    <GenreSection />
             </section>
         </main>
     )

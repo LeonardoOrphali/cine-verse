@@ -1,5 +1,7 @@
 import { useParams } from "react-router-dom"
-import { useEffect, useState } from "react"
+import { useCallback } from "react"
+import useMovieResource from "../hooks/useMovieResource"
+import RecommendationSection from "../components/movie/RecommendationSection"
 
 import { getMovieDetails } from "../services/movieService"
 import { TiStarFullOutline } from "react-icons/ti";
@@ -12,26 +14,21 @@ import Loading from "../components/layout/Loading"
 function MovieDetails() {
     const { id } = useParams()
 
-    const [movie, setMovie] = useState(null)
-    const [loading, setLoading] = useState(true)
+    return <MovieDetailsContent key={id} id={id} />
+}
 
-    useEffect(() => {
-        async function loadMovie() {
-            try {
-                const movies = await getMovieDetails(id)
-                setMovie(movies)
-            } finally {
-                setLoading(false)
-            }
-        }
-        loadMovie()
-    }, [id])
-
+function MovieDetailsContent({ id }) {
+    const loadMovie = useCallback(signal => getMovieDetails(id, signal), [id])
+    const resource = useMovieResource(loadMovie)
+    if (resource.status === 'loading') return <Loading />
+    if (resource.status === 'error') return (
+        <main className="min-h-screen px-4 pt-40 text-center">
+            <p role="status">Não foi possível carregar este filme.</p>
+            <button type="button" onClick={resource.retry} className="mt-2 underline cursor-pointer">Tentar novamente</button>
+        </main>
+    )
+    const movie = resource.data
     const heroMovie = movie
-    
-    if (loading) return <Loading />
-
-    if (!heroMovie) return null
 
     let overview = movie.overview == "" ? "Descrição não encontrada." : movie.overview
 
@@ -45,35 +42,27 @@ function MovieDetails() {
                     items-center 
                 "
             >
-                <Hero movie={heroMovie} />
-                <section
-                    className="
-                        w-full
-                        px-30
-                    "
-                >
+                <Hero movie={heroMovie}>
                     <div
                         className="
-                            absolute
-                            bottom-20
-                            left-30
+                            w-full min-w-0 self-end px-4 pt-36 pb-12 sm:px-8 lg:px-30 lg:pb-20
                         "
                     >
                         <h1
                             className="
-                                text-6xl
+                                text-3xl sm:text-5xl lg:text-6xl wrap-anywhere
                                 font-bold
-                                mb-10
+                                mb-6 lg:mb-10
                             "
                         >
                             {movie.title}
                         </h1>
                         <div
                             className="
-                                container
+                                flex-wrap
                                 flex
                                 items-center
-                                gap-4
+                                gap-x-4 gap-y-3
                             "
                         >
                             <h2>
@@ -141,30 +130,31 @@ function MovieDetails() {
                             </div>
                         </div>
                     </div>
+                </Hero>
+                <section className="w-full min-w-0 px-4 sm:px-8 lg:px-30">
                     <div 
                         className="
-                            gap-30
+                            gap-10 xl:gap-20 2xl:gap-30
                             w-full
                             grid
-                            grid-cols-3
+                            grid-cols-1 lg:grid-cols-3
                             
                         "
                     >
                         <div
                             className="
-                                pt-20
-                                col-span-2
+                                min-w-0 pt-8 lg:pt-20 lg:col-span-2 wrap-anywhere
                             "
                         >
                             <div
                                 className="
-                                    mb-20
+                                    mb-12 lg:mb-20
                                     container
                                 "
                             >
                                 <h2 
                                     className="
-                                        text-4xl
+                                        text-3xl sm:text-4xl
                                         mb-3
                                     "
                                 >
@@ -172,7 +162,7 @@ function MovieDetails() {
                                 </h2>
                                 <hr 
                                     className="
-                                        mb-10
+                                        mb-6 lg:mb-10
                                         border-(--border)
                                     "
                                 />
@@ -185,6 +175,7 @@ function MovieDetails() {
                         <SideBar movie={movie} />
                     </div>
                 </section>
+                <RecommendationSection key={id} movieId={id} />
             </main>
     )
 }

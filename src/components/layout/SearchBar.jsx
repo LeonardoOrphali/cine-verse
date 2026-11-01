@@ -21,7 +21,8 @@ function SearchBar() {
         <form 
             onSubmit={handleSearch}
             className="
-                w-50
+                w-full
+                min-w-0
                 py-1.5
                 px-4
                 gap-2
@@ -36,8 +37,7 @@ function SearchBar() {
                 focus-within:scale-x-105
                 focus-within:border-white/70
 
-                sm:w-sm
-                lg:w-md
+                sm:max-w-md
             "
         >
             <input 
@@ -48,10 +48,11 @@ function SearchBar() {
                 className="
                     outline-0
                     w-full
+                    min-w-0
                     text-(--main-text)
                 "
             />
-            <button type="submit">
+            <button type="submit" className="shrink-0">
                 <CiSearch 
                     size={22} 
                     className="

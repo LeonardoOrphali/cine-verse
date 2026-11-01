@@ -1,6 +1,6 @@
 import MovieCard from "./MovieCard"
 
-function MovieGridView({ movies, title, isloading }) {
+function MovieGridView({ movies, title, isloading, onFavoriteRemove }) {
     const skeletons = Array.from({ length: 20 })
 
     return(
@@ -16,7 +16,13 @@ function MovieGridView({ movies, title, isloading }) {
         >
             <div 
                 className="
-                    mt-25
+                    mt-36
+                    w-full
+                    min-w-0
+                    px-4
+                    sm:mt-25
+                    sm:px-8
+                    lg:px-14
                 "
             >
                 <h1 
@@ -32,8 +38,17 @@ function MovieGridView({ movies, title, isloading }) {
                 <div 
                     className="
                         grid
-                        grid-cols-7
-                        gap-5
+                        auto-rows-fr
+                        grid-cols-2
+                        gap-x-3
+                        gap-y-11
+                        sm:grid-cols-3
+                        sm:gap-x-5
+                        sm:gap-y-11
+                        md:grid-cols-4
+                        lg:grid-cols-5
+                        xl:grid-cols-6
+                        2xl:grid-cols-7
                     "
                 >
                     {isloading
@@ -48,10 +63,10 @@ function MovieGridView({ movies, title, isloading }) {
                                     <div 
                                         key={movie.id} 
                                         className="
-                                            mb-5
+                                            min-w-0
                                         "
                                     >
-                                        <MovieCard  movie={movie}  />
+                                        <MovieCard movie={movie} onFavoriteRemove={onFavoriteRemove} />
                                     </div>
                                 ))}
                             </>

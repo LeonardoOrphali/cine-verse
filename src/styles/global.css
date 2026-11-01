@@ -23,3 +23,53 @@ body {
 @theme {
     --breakpoint-xs: 30rem;
 }
+/* Shared backdrop layers grow with the content, including long movie titles. */
+.hero { min-height: 65svh; }
+.hero > * { grid-area: 1 / 1; }
+.hero-backdrop { position: relative; z-index: -2; }
+.hero-backdrop > img, .hero-backdrop > span { position: absolute; inset: 0; }
+.hero-shade { z-index: -1; }
+.hero-fade { z-index: -1; }
+.movie-card-link, .movie-card, .movie-card-content, .movie-card-skeleton {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.movie-card, .movie-card-content { flex: 1; min-width: 0; }
+.movie-card-poster-frame { position: relative; width: 100%; flex-shrink: 0; }
+.movie-card-poster-frame > img { position: absolute; inset: 0; width: 100%; height: 100%; }
+.movie-card-poster { display: block; }
+.movie-card-info, .movie-card-skeleton-info { flex: 1; }
+.movie-card-info { display: flex; }
+.movie-card-info > div { width: 100%; }
+.movie-card-poster { border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
+.movie-card-info { position: relative; }
+@media (min-width: 1024px) {
+    .hero { min-height: 95vh; }
+}
+@media (hover: hover) and (pointer: fine) {
+    /* Mouse focus must not leave a card expanded after favoriting. */
+    .favorite-button { opacity: 0; pointer-events: none; }
+    .movie-card-link:is(:hover, :has(:focus-visible)) .favorite-button { opacity: 1; pointer-events: auto; }
+    .movie-card { height: auto; aspect-ratio: 7 / 10; }
+    .movie-card-content { position: absolute; inset: 0; }
+    .movie-card-info { opacity: 0; visibility: hidden; }
+    .movie-card-skeleton-info { display: none; }
+    .movie-card-poster { border-radius: .5rem; }
+    .movie-card-link:is(:hover, :has(:focus-visible)) .movie-card { transform: scale(1.12); z-index: 2; }
+    .movie-card-link:is(:hover, :has(:focus-visible)) .movie-card-content { transform: translateY(-1.5rem); }
+    .movie-card-link:is(:hover, :has(:focus-visible)) .movie-card-info { opacity: 1; visibility: visible; }
+    .movie-card-link:is(:hover, :has(:focus-visible)) .movie-card-poster { border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
+    /* Keep enlarged edge cards inside the available content width. */
+    .movie-card-link { transform-origin: center; }
+    .movie-card { transform-origin: top center; }
+    .swiper-slide:first-child .movie-card,
+    .grid > :first-child .movie-card { transform-origin: top left; }
+    .swiper-slide:last-child .movie-card,
+    .grid > :last-child .movie-card { transform-origin: top right; }
+}
+
+@media (width < 640px) {
+    .home-hero { height: clamp(420px, 72svh, 540px); min-height: 0; }
+    .home-hero .hero-loading-copy { align-self: end; padding-top: 8rem; padding-bottom: 2rem; }
+}

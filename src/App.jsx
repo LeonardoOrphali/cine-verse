@@ -5,12 +5,14 @@ import Footer from "./components/layout/Footer"
 
 function App() {
   return (
-    <>
+    <div className="flex min-h-svh flex-col">
       <Header />
       <ScrollToTop />
-      <Outlet />
+      <div className="min-w-0 flex-1">
+        <Outlet />
+      </div>
       <Footer />
-    </>
+    </div>
   )
 }
 

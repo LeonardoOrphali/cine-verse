@@ -1,4 +1,3 @@
-import  CineVerseLogo  from "../../assets/CineVerseLogo.svg"
 import TMDBLogo  from "../../assets/TMDBLogo.svg"
 import { FaLinkedin } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
@@ -9,8 +8,7 @@ function Footer() {
         <footer 
             className="
                 w-full
-                h-60
-                mt-50
+                min-h-60 h-auto mt-20 py-8 lg:mt-50
                 text-sm
                 bg-(--surface)
                 border
@@ -18,13 +16,14 @@ function Footer() {
                 flex
                 justify-center
 
+                lg:h-auto lg:min-h-30
                 xs:text-md
                 sm:text-[1rem]
             "
         >
             <div
                 className="
-                    w-[80%]
+                    w-full px-4 gap-8 sm:px-8 lg:px-0 lg:w-[80%]
                     items-center
                     justify-evenly
                     flex
@@ -42,15 +41,15 @@ function Footer() {
             >
                 <div 
                     className="
-                        lg:w-[50%]
+                        min-w-0 w-full lg:w-[50%]
                         xl:w-[40%]
                     "
                 >
                     <img 
-                        src={CineVerseLogo} 
+                        src="/logoCineVerse.png"
                         alt="Cineverse logo" 
                         className="
-                            w-18
+                            w-18 shrink-0
                         "
                     />
                     <div 
@@ -64,10 +63,7 @@ function Footer() {
                     </div>
                     <div 
                         className="
-                            w-full
-
-                            xs:w-[50%]
-                            sm:w-[60%]
+                            w-full min-w-0 max-w-sm wrap-anywhere
                         "
                     >
                         <img 

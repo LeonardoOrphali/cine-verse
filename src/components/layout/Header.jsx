@@ -1,8 +1,8 @@
 import { Link, useLocation } from "react-router-dom"
 import { useState, useEffect } from "react"
+import { FaRegHeart } from 'react-icons/fa'
 
 import SearchBar from "./SearchBar"
-import CineVerseLogo from "../../assets/CineVerseLogo.svg"
 
 function Header() {
     const { pathname } = useLocation()
@@ -28,8 +28,15 @@ function Header() {
                 top-0
                 left-0
                 w-full
-                h-18
-                px-8
+                min-h-18
+                px-4
+                py-3
+                gap-x-4
+                gap-y-3
+                flex-wrap
+                sm:flex-nowrap
+                sm:h-18
+                sm:py-0
                 z-50
                 fixed
                 flex
@@ -41,7 +48,7 @@ function Header() {
                 sm:px-14
                 ${
                     isScrolled 
-                        ?   'bg-black'
+                        ?   'bg-(--background)'
                         :   'bg-transparent'
                 
                 }
@@ -57,28 +64,33 @@ function Header() {
                 >
                     {pathname === "/" 
                         ?   <img
-                                src={CineVerseLogo}
+                                src="/logoCineVerse.png"
                                 alt="CineVerse logo" 
                                 title="Home"
                                 className="
                                     cursor-pointer
-                                    max-sm
-                                    w-16
-                                    xs:w-12
+                                    w-12
+                                    shrink-0
                                 "
                             />
                         :   <Link to="/" viewTransition>
                                 <img
-                                    src={CineVerseLogo}
+                                    src="/logoCineVerse.png"
                                     alt="CineVerse logo" 
                                     title="Home"
+                                    className="w-12 shrink-0"
                                 />
                             </Link>
                     }
                 </div>
                 <div 
                     className="
-                        w-lg
+                        order-last
+                        w-full
+                        min-w-0
+                        sm:order-none
+                        sm:flex-1
+                        sm:max-w-lg
                         flex
                         items-center
                         justify-center
@@ -86,10 +98,17 @@ function Header() {
                 >
                     <SearchBar />
                 </div>
-                <div>
-                    <p>
-                        Profile
-                    </p>
+                <div className="shrink-0">
+                    <Link
+                        to="/favoritos"
+                        aria-label="Favoritos"
+                        title="Favoritos"
+                        viewTransition
+                        aria-current={pathname === '/favoritos' ? 'page' : undefined}
+                        className={`flex min-h-11 min-w-11 items-center justify-center rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white ${pathname === '/favoritos' ? 'text-(--primary)' : 'text-(--main-text) hover:text-white/70'}`}
+                    >
+                        <FaRegHeart size={20} aria-hidden="true" />
+                    </Link>
                 </div>
         </header>
     )
